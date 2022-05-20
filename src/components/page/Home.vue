@@ -114,4 +114,30 @@ export default {
             text-align: center;
         }
     }
+
+    @media screen and (max-width:600px){
+        #presentation h1{
+            font-size: 30px;
+        }
+
+        #presentation h2{
+            font-size: 20px;
+        }
+
+        #acces_projet a{
+            font-size: 13px;
+            padding: 10px 15px;
+        }
+    }
+
+    @media screen and (max-width:400px){
+        #presentation h1{
+            font-size: 24px;
+            padding: 0 20px;
+        }
+
+        #presentation h2{
+            font-size: 16px;
+        }
+    }
 </style>

@@ -71,6 +71,7 @@ export default {
         position: relative;
         align-items: center;
         justify-content: space-around;
+        cursor: pointer;
     }
 
     #checkbox{

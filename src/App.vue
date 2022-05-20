@@ -46,7 +46,7 @@ export default {
         "./src/assets/icons/otter.svg"
       ];
 
-      const textures2 = [
+      /*const textures2 = [
         "./src/assets/icons/brain.svg",
         "./src/assets/icons/code.svg",
         "./src/assets/icons/hashtag.svg",
@@ -59,7 +59,7 @@ export default {
         "./src/assets/icons/coder.svg",
         "./src/assets/icons/css.svg",
         "./src/assets/icons/otter2.svg"
-      ];
+      ];*/
 
       const world = document.querySelector("#app");
       const { Engine, Render, Runner, World, Bodies, Body } = Matter;
@@ -105,13 +105,28 @@ export default {
       Body.rotate(triangle2, -82)
       Body.scale(triangle2, 1, 2)*/
 
-      World.add(engine.world, [
-        Bodies.rectangle(width / 2, height + 50, width, 100, {
+      let fond = "";
+
+      if(render.options.width > 700){
+          fond = Bodies.rectangle(width / 2, height + 50, width, 100, {
             isStatic: true,
             render: {
                 strokeStyle: 'transparent',
             }
-        }),
+        })
+      } else {
+        fond = Bodies.rectangle(width / 2, height + 50, width, 100, {
+            isStatic: false,
+            render: {
+                strokeStyle: 'transparent',
+            }
+        })
+      }
+
+      World.add(engine.world, [
+
+        fond,
+        
 
         /*triangle1,triangle2,*/
         Bodies.rectangle(-50, height / 2, 100, height, {
@@ -132,33 +147,7 @@ export default {
       function createBall() {
         const ORIGINAL_SIZE = 240;
         const SIZE = Math.floor(Math.random() * 76) + 30;
-        if(localStorage.getItem("theme") == "dark"){
-          let ball = Bodies.circle(Math.round(Math.random() * width), -30, 29, {
-              angle: Math.PI * (Math.random() * 2 - 1),
-              friction: 0.001,
-              frictionAir: 0.12,
-              restitution: 0.8,
-              render: {
-                  sprite: {
-                      texture: textures2[
-
-                          Math.floor(Math.random() * (textures.length))],
-                      xScale: SIZE / ORIGINAL_SIZE,
-                      yScale: SIZE / ORIGINAL_SIZE
-                  }
-              }
-              /*collisionFilter: {
-                  category: 0
-              }*/
-          });
-
-          setTimeout(() => {
-              World.remove(engine.world, ball);
-          }, 22000);
-
-          return ball;
-        } else {
-          let ball = Bodies.circle(Math.round(Math.random() * width), -30, 29, {
+        let ball = Bodies.circle(Math.round(Math.random() * width), -30, 29, {
               angle: Math.PI * (Math.random() * 2 - 1),
               friction: 0.001,
               frictionAir: 0.12,
@@ -183,10 +172,6 @@ export default {
 
           return ball;
         }
-        
-
-        
-      }
 
       Runner.run(engine);
 

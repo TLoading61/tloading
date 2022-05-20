@@ -42,9 +42,26 @@ export default {
         margin: 0 15px;
         color: var(--primary-text-color);
         opacity: .7;
+        cursor: pointer;
     }
 
     #social ul li:hover{
         opacity: 1;
+    }
+
+    @media screen and (max-width:600px){
+        #social ul::after{
+            display: none;
+        }
+
+        #social{
+            padding: 0;
+            width: 100%;
+        }
+
+        #social ul{
+            padding: 0;
+            justify-content: center;
+        }
     }
 </style>
